@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王贺松 - 技术博客与项目主页</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #007bff;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* 两栏布局 (Flexbox) */
+        .content-sections {
+            display: flex;
+            gap: 30px; /* 栏目间距 */
+        }
+
+        .tech-section {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .tech-section h2 {
+            color: #28a745;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        
+        /* 大模型部分使用不同颜色区分 */
+        #llm-section h2 {
+            color: #dc3545;
+            border-bottom: 2px solid #dc3545;
+        }
+
+        .tech-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-section li {
+            padding: 8px 0;
+            border-bottom: 1px dotted #eee;
+            font-size: 0.95em;
+        }
+
+        .tech-section li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .content-sections {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>王贺松的个人技术主页</h1>
+            <p><strong>资深大数据架构师 / 大模型应用开发专家</strong></p>
+            <p>
+                <a href="mailto:1172700121@qq.com">Email</a> |
+                <a href="tel:+18810901677">电话</a> |
+                <a href="https://github.com/wanghesong2019" target="_blank">GitHub</a>
+            </p>
+        </header>
+
+        <div class="content-sections">
+            
+            <section class="tech-section" id="bigdata-section">
+                <h2>📊 大数据平台与技术积累 (Big Data Technology)</h2>
+                <p>专注于大规模分布式计算架构设计、高吞吐量实时流处理和性能优化。</p>
+                <ul>
+                    <li>**实时流架构：** 基于 **Flink** 构建高可用实时数仓，实现**秒级风控告警**及高 TPS 日志流处理。</li>
+                    <li>**分布式架构：** 熟悉 **K8s/Docker** 容器化部署、集群资源调度和 **Hadoop/YARN** 深度优化。</li>
+                    <li>**数仓与治理：** 主导 **ODS-ADS 分层数仓**建模，具备**数据倾斜治理**及**海量数据质量**保障经验。</li>
+                    <li>**性能工程：** 擅长 **Spark/Hive SQL** 调优、复杂关联算法重构，实现计算效率**数倍提升**。</li>
+                    <li>**关键项目：** <a href="#project-bd-1">网络风险流量实时告警</a>, <a href="#project-bd-2">大华人像聚档算法优化</a>。</li>
+                </ul>
+            </section>
+
+            <section class="tech-section" id="llm-section">
+                <h2>🤖 大模型应用与创新 (LLM & AI Application)</h2>
+                <p>探索 AI 应用的边界，专注于 RAG、多模态融合及 LLM 工程化落地。</p>
+                <ul>
+                    <li>**RAG 核心框架：** 精通 **LangChain/LlamaIndex**，具备 Milvus/Chroma 等**向量数据库**索引优化能力。</li>
+                    <li>**多模态工程：** 熟练处理**文本、图片、PDF（OCR）**等多源输入，实现跨模态信息关联和精准问答。</li>
+                    <li>**模型微调与部署：** 掌握 **LoRA/QLoRA** 等微调技术，优化模型推理速度和**部署成本**。</li>
+                    <li>**Prompt 优化：** 深入理解 **CoT (思维链)** 和 Few-shot 提示，提升大模型在复杂任务中的**准确率和鲁棒性**。</li>
+                    <li>**关键项目：** <a href="#project-llm-1">多模态文档问答系统</a>, <a href="#project-llm-2">大模型安全策略引擎</a>。</li>
+                </ul>
+            </section>
+        </div>
+
+        <footer>
+            <p>© 2024 王贺松. All Rights Reserved. | 基于 GitHub Pages 部署</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
