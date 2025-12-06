@@ -3,99 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王贺松 - 技术博客与项目主页</title>
+    <title>王贺松 - 博客与项目主页</title>
     <style>
-        /* 基础样式 */
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-        }
+        /* 基础与布局样式 */
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; }
+        .container { width: 90%; max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 15px rgba(0, 0, 0, 0.08); border-radius: 8px; }
+        header { text-align: center; padding-bottom: 20px; border-bottom: 4px solid #007bff; margin-bottom: 30px; }
+        header h1 { color: #007bff; margin-bottom: 5px; }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        /* 头部样式 */
-        header {
-            text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #007bff;
-            margin-bottom: 20px;
-        }
-
-        header h1 {
-            color: #007bff;
-            margin-bottom: 5px;
-        }
-
-        header p {
-            font-size: 1.1em;
-            color: #555;
-        }
-
-        /* 两栏布局 (Flexbox) */
-        .content-sections {
-            display: flex;
-            gap: 30px; /* 栏目间距 */
-        }
-
+        /* 主体两栏布局 (Stacking) */
+        .content-sections { display: flex; flex-direction: column; gap: 40px; } 
+        
+        /* 内部两栏布局 (Nested Flexbox) */
         .tech-section {
-            flex: 1;
-            padding: 20px;
             border: 1px solid #ddd;
-            border-radius: 6px;
+            border-radius: 8px;
+            padding: 20px;
         }
 
-        .tech-section h2 {
-            color: #28a745;
-            border-bottom: 2px solid #28a745;
-            padding-bottom: 5px;
+        .tech-section > h2 {
+            text-align: center;
+            padding-bottom: 10px;
             margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .inner-columns {
+            display: flex;
+            gap: 20px;
         }
         
-        /* 大模型部分使用不同颜色区分 */
-        #llm-section h2 {
-            color: #dc3545;
-            border-bottom: 2px solid #dc3545;
+        .inner-columns > div {
+            flex: 1;
         }
 
-        .tech-section ul {
-            list-style: none;
-            padding: 0;
+        /* 模块标题样式 */
+        .inner-columns h3 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            font-size: 1.2em;
+            margin-top: 0;
         }
 
-        .tech-section li {
-            padding: 8px 0;
-            border-bottom: 1px dotted #eee;
-            font-size: 0.95em;
-        }
+        /* 大数据主题色 */
+        #bigdata-section h2 { color: #28a745; border-bottom: 2px solid #28a745; }
+        .tech-section.bigdata-section .inner-columns h3 { border-bottom: 2px solid #28a745; }
 
-        .tech-section li:last-child {
-            border-bottom: none;
-        }
+        /* 大模型主题色 */
+        #llm-section h2 { color: #dc3545; border-bottom: 2px solid #dc3545; }
+        .tech-section.llm-section .inner-columns h3 { border-bottom: 2px solid #dc3545; }
 
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-            font-size: 0.8em;
-            color: #777;
-        }
+        /* 列表样式 */
+        ul { list-style: none; padding: 0; }
+        li { padding: 8px 0; border-bottom: 1px dotted #eee; font-size: 0.95em; }
+        li:last-child { border-bottom: none; }
+        .list-tag { font-size: 0.8em; color: #888; margin-right: 5px; }
 
-        /* 响应式调整 */
+        footer { text-align: center; margin-top: 30px; padding-top: 15px; border-top: 1px solid #eee; font-size: 0.8em; color: #777; }
+
+        /* 响应式调整：小屏幕时内部栏目堆叠 */
         @media (max-width: 768px) {
-            .content-sections {
+            .inner-columns {
                 flex-direction: column;
             }
         }
@@ -106,39 +75,68 @@
     <div class="container">
         <header>
             <h1>王贺松的个人技术主页</h1>
-            <p><strong>资深大数据架构师 / 大模型应用开发专家</strong></p>
+            <p><strong>资深大数据架构师 / 大模型应用与创新专家</strong></p>
             <p>
                 <a href="mailto:1172700121@qq.com">Email</a> |
-                <a href="tel:+18810901677">电话</a> |
-                <a href="https://github.com/wanghesong2019" target="_blank">GitHub</a>
+                <a href="https://github.com/wanghesong2019" target="_blank">GitHub</a> |
+                <a href="#">个人简历</a>
             </p>
         </header>
 
         <div class="content-sections">
             
-            <section class="tech-section" id="bigdata-section">
+            <section class="tech-section bigdata-section" id="bigdata-section">
                 <h2>📊 大数据平台与技术积累 (Big Data Technology)</h2>
-                <p>专注于大规模分布式计算架构设计、高吞吐量实时流处理和性能优化。</p>
-                <ul>
-                    <li>**实时流架构：** 基于 **Flink** 构建高可用实时数仓，实现**秒级风控告警**及高 TPS 日志流处理。</li>
-                    <li>**分布式架构：** 熟悉 **K8s/Docker** 容器化部署、集群资源调度和 **Hadoop/YARN** 深度优化。</li>
-                    <li>**数仓与治理：** 主导 **ODS-ADS 分层数仓**建模，具备**数据倾斜治理**及**海量数据质量**保障经验。</li>
-                    <li>**性能工程：** 擅长 **Spark/Hive SQL** 调优、复杂关联算法重构，实现计算效率**数倍提升**。</li>
-                    <li>**关键项目：** <a href="#project-bd-1">网络风险流量实时告警</a>, <a href="#project-bd-2">大华人像聚档算法优化</a>。</li>
-                </ul>
+                
+                <div class="inner-columns">
+                    <div id="bigdata-blog">
+                        <h3>📚 技术博客列表 (Technical Blogs)</h3>
+                        <ul>
+                            <li><span class="list-tag">[Flink]</span> <a href="#">基于 Broadcast State 的万级规则实时热更新实践</a></li>
+                            <li><span class="list-tag">[Spark]</span> <a href="#">Spark 复杂关联：从 O(N²) 到 O(N) 的算法重构</a></li>
+                            <li><span class="list-tag">[K8s]</span> <a href="#">K8s 下 YARN 资源调度与弹性伸缩优化指南</a></li>
+                            <li><span class="list-tag">[数仓]</span> <a href="#">维度建模与总线矩阵在安全数仓中的应用</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="bigdata-project">
+                        <h3>🛠️ 核心项目列表 (Key Projects)</h3>
+                        <ul>
+                            <li><span class="list-tag">[实时风控]</span> <a href="#">网络风险流量实时告警系统 (百万 QPS)</a></li>
+                            <li><span class="list-tag">[数仓优化]</span> <a href="#">大华人像聚档算法效果验证系统 (效率提升 77%)</a></li>
+                            <li><span class="list-tag">[架构]</span> <a href="#">XX 省视频大数据建模平台 (日均 4 亿数据)</a></li>
+                            <li><span class="list-tag">[数据治理]</span> <a href="#">驾乘数据分析离线数仓项目 (数据质量达 99.8%)</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="tech-section llm-section" id="llm-section">
+                <h2>🤖 大模型应用与创新 (LLM & AI Application)</h2>
+
+                <div class="inner-columns">
+                    <div id="llm-blog">
+                        <h3>📚 技术博客列表 (Technical Blogs)</h3>
+                        <ul>
+                            <li><span class="list-tag">[RAG]</span> <a href="#">基于 HNSW 索引与跨模态融合的 RAG 召回率优化</a></li>
+                            <li><span class="list-tag">[Prompt]</span> <a href="#">CoT、Few-shot 在复杂多模态推理中的应用</a></li>
+                            <li><span class="list-tag">[微调]</span> <a href="#">LoRA/QLoRA 在 Llama 3 上的低成本微调实践</a></li>
+                            <li><span class="list-tag">[工程化]</span> <a href="#">面向高并发场景的 LLM 推理加速与部署优化</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="llm-project">
+                        <h3>🛠️ 核心项目列表 (Key Projects)</h3>
+                        <ul>
+                            <li><span class="list-tag">[多模态]</span> <a href="#">基于图像/文档解析的多模态 RAG 问答平台</a></li>
+                            <li><span class="list-tag">[安全]</span> <a href="#">LLM 安全策略与内容审核系统设计</a></li>
+                            <li><span class="list-tag">[Agent]</span> <a href="#">企业级知识库 Agent 自动化流程构建</a></li>
+                            <li><span class="list-tag">[向量检索]</span> <a href="#">Milvus/Chroma 向量索引优化与性能基准测试</a></li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
-            <section class="tech-section" id="llm-section">
-                <h2>🤖 大模型应用与创新 (LLM & AI Application)</h2>
-                <p>探索 AI 应用的边界，专注于 RAG、多模态融合及 LLM 工程化落地。</p>
-                <ul>
-                    <li>**RAG 核心框架：** 精通 **LangChain/LlamaIndex**，具备 Milvus/Chroma 等**向量数据库**索引优化能力。</li>
-                    <li>**多模态工程：** 熟练处理**文本、图片、PDF（OCR）**等多源输入，实现跨模态信息关联和精准问答。</li>
-                    <li>**模型微调与部署：** 掌握 **LoRA/QLoRA** 等微调技术，优化模型推理速度和**部署成本**。</li>
-                    <li>**Prompt 优化：** 深入理解 **CoT (思维链)** 和 Few-shot 提示，提升大模型在复杂任务中的**准确率和鲁棒性**。</li>
-                    <li>**关键项目：** <a href="#project-llm-1">多模态文档问答系统</a>, <a href="#project-llm-2">大模型安全策略引擎</a>。</li>
-                </ul>
-            </section>
         </div>
 
         <footer>
