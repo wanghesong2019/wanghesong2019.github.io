@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const nav = [
+  { href: '/blog', label: '博客' },
+  { href: '/projects', label: '项目' },
+  { href: '/about', label: '关于' },
+  { href: '/resume', label: '简历' },
+];
+
+const pageTitle = title ? `${title} · 王贺松` : '王贺松 · 手搓 Agent 的人';
+const desc = description ?? '王贺松的个人技术主页：手搓 Agent、LangGraph 工程化、拆解 AI Agent 系统底层。';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={desc} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="site-brand" href="/">
+          <span class="name">王贺松</span>
+          <span class="role">手搓 Agent 的人</span>
+        </a>
+        <nav class="site-nav">
+          {
+            nav.map((n) => {
+              const current =
+                Astro.url.pathname === n.href || Astro.url.pathname.startsWith(n.href + '/');
+              return (
+                <a href={n.href} aria-current={current ? 'page' : undefined}>
+                  {n.label}
+                </a>
+              );
+            })
+          }
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        © 2026 王贺松 ·{' '}
+        <a href="https://github.com/wanghesong2019" target="_blank" rel="noopener">github.com/wanghesong2019</a>
+      </div>
+    </footer>
+  </body>
+</html>

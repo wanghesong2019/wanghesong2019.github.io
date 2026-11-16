@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import { sortedPosts, COLUMNS, slugOf } from '../../lib/blog';
+
+export function getStaticPaths() {
+  return COLUMNS.map((c) => ({ params: { column: c.id } }));
+}
+
+const { column } = Astro.params;
+const col = COLUMNS.find((c) => c.id === column);
+const all = await sortedPosts();
+const posts = all
+  .filter((p) => p.data.column === column)
+  .sort((a, b) => a.data.order - b.data.order);
+const runOf = (id: string) => all.findIndex((p) => p.id === id) + 1;
+---
+
+<Base title={col?.name}>
+  <h1>{col?.name}</h1>
+  <p>{col?.blurb}</p>
+
+  <div class="run-list">
+    {
+      posts.map((p) => (
+        <a class="run-entry" href={`/blog/${column}/${slugOf(p)}`}>
+          <span class="no">#{runOf(p.id)}</span>
+          <span class="t">{p.data.title}</span>
+          <span class="d">{p.data.date.toISOString().slice(0, 10)}</span>
+          <span class="desc">{p.data.description}</span>
+        </a>
+      ))
+    }
+  </div>
+</Base>

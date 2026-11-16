@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import { sortedPosts, COLUMNS, slugOf } from '../lib/blog';
+
+const posts = await sortedPosts();
+const latest = posts.slice(-4).reverse();
+const runOf = (id: string) => posts.findIndex((p) => p.id === id) + 1;
+---
+
+<Base>
+  <section class="hero">
+    <div class="who">王贺松 · 一个正在手搓 Agent 的人</div>
+    <h1 class="claim">把 agent 系统拆到底层，一篇篇写给你看。</h1>
+
+    <div class="loop" aria-hidden="true">
+      <span class="node">观察 observe</span><span class="arrow">→</span>
+      <span class="node">思考 think</span><span class="arrow">→</span>
+      <span class="node">行动 act</span>
+      <span class="loopback">⟳</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href="/blog">读博客</a>
+      <a class="btn" href="/projects">看项目</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">三个专栏</h2>
+    <div class="columns">
+      {
+        COLUMNS.map((c) => {
+          const n = posts.filter((p) => p.data.column === c.id).length;
+          return (
+            <a class="column-card" href={`/blog/${c.id}`}>
+              <div class="n">{n} 篇</div>
+              <h3>{c.name}</h3>
+              <p>{c.blurb}</p>
+            </a>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">最近更新</h2>
+    <div class="run-list">
+      {
+        latest.map((p) => (
+          <a class="run-entry" href={`/blog/${p.data.column}/${slugOf(p)}`}>
+            <span class="no">#{runOf(p.id)}</span>
+            <span class="t">{p.data.title}</span>
+            <span class="d">{p.data.date.toISOString().slice(0, 10)}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

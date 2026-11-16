@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+
+const projects = [
+  {
+    name: 'claude-trajectory-viewer',
+    desc: 'Agent 可观测性工具：驱动 Claude Code 以 headless 模式运行，实时可视化 agent 的每一步——读了什么、改了什么、花了多少钱。',
+    stack: 'Python · FastAPI · SSE · 原生 JS',
+    url: 'https://github.com/wanghesong2019/claude-trajectory-viewer',
+  },
+  {
+    name: 'powercode-py',
+    desc: '手搓 AI Agent（Python 版）：从零实现 agent loop、工具调用、上下文压缩、Plan Mode、错误熔断。',
+    stack: 'Python · 手写 agent loop',
+    url: 'https://github.com/wanghesong2019/powercode-py',
+  },
+  {
+    name: 'langgraph-in-action',
+    desc: 'LangGraph 实战入门：每个知识点 = 一个可运行 demo + 一篇博客 + 标注到章节的参考文献。',
+    stack: 'Python · LangGraph',
+    url: 'https://github.com/wanghesong2019/langgraph-in-action',
+  },
+];
+---
+
+<Base title="项目">
+  <h1>项目</h1>
+  <p>把博客里讲的东西，落到能跑起来的代码里。</p>
+
+  <div class="card-grid">
+    {
+      projects.map((p) => (
+        <a class="project-card" href={p.url} target="_blank" rel="noopener">
+          <h3>{p.name}</h3>
+          <p>{p.desc}</p>
+          <div class="stack">{p.stack}</div>
+        </a>
+      ))
+    }
+  </div>
+</Base>

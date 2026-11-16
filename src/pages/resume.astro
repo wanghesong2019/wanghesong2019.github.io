@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="简历">
+  <h1>简历</h1>
+  <p>AI Agent / 大模型应用开发方向。</p>
+  <p>
+    <a class="btn primary" href="/resume.pdf" target="_blank" rel="noopener">下载 PDF</a>
+  </p>
+
+  <iframe
+    src="/resume.pdf"
+    title="简历预览"
+    style="width:100%;height:82vh;border:1px solid var(--rule);margin-top:1.5rem;background:#fff;"
+  />
+</Base>

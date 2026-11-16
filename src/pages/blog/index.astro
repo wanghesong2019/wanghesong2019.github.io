@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { sortedPosts, COLUMNS } from '../../lib/blog';
+
+const posts = await sortedPosts();
+---
+
+<Base title="博客">
+  <h1>博客</h1>
+  <p>三个专栏，一条主线：手搓 Agent → 用 LangGraph 工程化 → 拆 Agent 系统底层原理。</p>
+
+  <div class="columns">
+    {
+      COLUMNS.map((c) => {
+        const n = posts.filter((p) => p.data.column === c.id).length;
+        return (
+          <a class="column-card" href={`/blog/${c.id}`}>
+            <div class="n">{n} 篇</div>
+            <h3>{c.name}</h3>
+            <p>{c.blurb}</p>
+          </a>
+        );
+      })
+    }
+  </div>
+</Base>
