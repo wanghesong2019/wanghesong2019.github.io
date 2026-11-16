@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import { sortedPosts, slugOf, columnName } from '../../../lib/blog';
+import { WALINE_SERVER_URL } from '../../../lib/config';
 
 export async function getStaticPaths() {
   const posts = await sortedPosts();
@@ -24,6 +25,7 @@ const { title, date, description } = entry.data;
 const html = entry.rendered?.html ?? '';
 const dateStr = date.toISOString().slice(0, 10);
 const colName = columnName(column);
+const path = `/blog/${column}/${slug}/`;
 ---
 
 <Base title={title} description={description}>
@@ -38,6 +40,37 @@ const colName = columnName(column);
     </header>
 
     <div class="post-body" set:html={html} />
+
+    {
+      WALINE_SERVER_URL && (
+        <footer class="post-footer">
+          <div class="post-stats">
+            <span>
+              浏览 <span class="waline-pageview-count" data-path={path}>0</span>
+            </span>
+          </div>
+
+          <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+          <div id="waline"></div>
+
+          <script define:vars={{ serverURL: WALINE_SERVER_URL, path }}>
+            import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+            init({
+              el: '#waline',
+              serverURL,
+              path,
+              pageview: true,
+              comment: true,
+              reaction: true,
+              lang: 'zh-CN',
+              locale: {
+                placeholder: '写点什么…（支持匿名，留邮箱可收回复提醒）',
+              },
+            });
+          </script>
+        </footer>
+      )
+    }
   </article>
 
   <script is:inline>

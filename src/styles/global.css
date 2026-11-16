@@ -176,6 +176,17 @@ main { max-width: var(--measure); margin: 0 auto; padding: 3rem 1.25rem 5rem; }
 .mermaid { display: flex; justify-content: center; margin: 1.8rem 0; }
 .mermaid svg { max-width: 100%; height: auto; }
 
+/* —— 文章底部：统计 + Waline 评论 —— */
+.post-footer { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); }
+.post-stats {
+  font-family: var(--mono);
+  font-size: .82rem;
+  color: var(--muted);
+  margin-bottom: 1.6rem;
+}
+.post-stats .waline-pageview-count { color: var(--accent); font-weight: 600; }
+#waline { --waline-theme-color: var(--accent); --waline-active-color: var(--accent-deep); --waline-bg-color: transparent; }
+
 /* 页脚 */
 .site-footer {
   border-top: 1px solid var(--rule);
