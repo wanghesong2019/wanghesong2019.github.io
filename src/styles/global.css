@@ -94,6 +94,13 @@ main { max-width: var(--measure); margin: 0 auto; padding: 3rem 1.25rem 5rem; }
 }
 
 .hero .actions { display: flex; gap: .8rem; flex-wrap: wrap; }
+.hero .site-stat {
+  margin-top: 1.8rem;
+  font-family: var(--mono);
+  font-size: .8rem;
+  color: var(--faint);
+}
+.hero .site-stat .waline-pageview-count { color: var(--accent); font-weight: 600; }
 .btn {
   display: inline-block;
   padding: .55rem 1.1rem;

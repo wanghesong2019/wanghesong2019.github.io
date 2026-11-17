@@ -1,7 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import { sortedPosts, slugOf, columnName } from '../../../lib/blog';
-import { WALINE_SERVER_URL } from '../../../lib/config';
+import { WALINE_SERVER_URL, SITE_URL } from '../../../lib/config';
 
 export async function getStaticPaths() {
   const posts = await sortedPosts();
@@ -28,7 +28,22 @@ const colName = columnName(column);
 const path = `/blog/${column}/${slug}/`;
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} type="article" publishedTime={dateStr}>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      description: description,
+      datePublished: dateStr,
+      dateModified: dateStr,
+      author: { '@type': 'Person', name: '王贺松', url: SITE_URL },
+      publisher: { '@type': 'Person', name: '王贺松', url: SITE_URL },
+      url: new URL(path, SITE_URL).toString(),
+      mainEntityOfPage: new URL(path, SITE_URL).toString(),
+    })}
+  />
   <article>
     <header class="post-head">
       <div class="post-meta">
