@@ -51,22 +51,25 @@ const path = `/blog/${column}/${slug}/`;
           </div>
 
           <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
-          <div id="waline"></div>
-
-          <script define:vars={{ serverURL: WALINE_SERVER_URL, path }}>
-            import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
-            init({
-              el: '#waline',
-              serverURL,
-              path,
-              pageview: true,
-              comment: true,
-              reaction: true,
-              lang: 'zh-CN',
-              locale: {
-                placeholder: '写点什么…（支持匿名，留邮箱可收回复提醒）',
-              },
-            });
+          <div id="waline" data-server-url={WALINE_SERVER_URL} data-path={path}></div>
+          <script is:inline>
+            (function () {
+              var el = document.getElementById('waline');
+              var serverURL = el.getAttribute('data-server-url');
+              var path = el.getAttribute('data-path');
+              import('https://unpkg.com/@waline/client@v3/dist/waline.js').then(function (mod) {
+                mod.init({
+                  el: '#waline',
+                  serverURL: serverURL,
+                  path: path,
+                  pageview: true,
+                  comment: true,
+                  reaction: true,
+                  lang: 'zh-CN',
+                  locale: { placeholder: '写点什么…（支持匿名，留邮箱可收回复提醒）' },
+                });
+              });
+            })();
           </script>
         </footer>
       )
